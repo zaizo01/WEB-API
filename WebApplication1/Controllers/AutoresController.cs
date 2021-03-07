@@ -26,14 +26,15 @@ namespace WebApplication1.Controllers
             return context.Autores.Include(x => x.Libros).ToList();
         }
 
+        [HttpGet("/First")]
         [HttpGet("First")]
         public ActionResult<Autor> GetFirstAutor()
         {
             return context.Autores.FirstOrDefault();
         }
 
-        [HttpGet("{id}", Name = "GetAutor")]
-        public ActionResult<Autor> Get(int id)
+        [HttpGet("{id}/{name?}", Name = "GetAutor")]
+        public ActionResult<Autor> Get(int id, string name)
         {
             var autor = context.Autores.Include(x => x.Libros).FirstOrDefault(x => x.id == id);
 
